@@ -82,7 +82,7 @@ public class Registration extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == regbtn) {
-        	if (!validateForm()) {
+        	if (validateForm()) {
         		try {
                     JOptionPane.showMessageDialog(regbtn, "Entry Fields can not be blank");
                 } catch (Exception ex) {
