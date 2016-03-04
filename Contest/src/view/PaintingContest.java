@@ -38,5 +38,10 @@ public class PaintingContest {
 		return myContestEntries;
 	}
 	
+	public Entry getEntry(int theEntryID) {
+		return myContestEntries.get(theEntryID);
+		
+	}
+	
 
 }

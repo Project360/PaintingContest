@@ -93,12 +93,22 @@ public class Registration extends JFrame implements ActionListener {
                 		" \n You are Successfully Registered");
         	}
         } else {	// cancel button
-            firstN.setText("");
-            lastN.setText("");
-            dob.setText("");
-            emailadd.setText("");
-            phoneN.setText("");
+            cancel();
         }
+    }
+    
+    private boolean registerUser() {
+    	// create a new Contestant
+    	return true;
+    }
+    
+    private void cancel() {
+    	// clears all the textfields
+    	firstN.setText("");
+        lastN.setText("");
+        dob.setText("");
+        emailadd.setText("");
+        phoneN.setText("");
     }
 
 
