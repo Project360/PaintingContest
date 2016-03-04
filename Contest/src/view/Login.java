@@ -8,8 +8,9 @@ public class Login extends JFrame implements ActionListener
   { 
 	
     JLabel label1, label2, label3 ;
-    JTextField UserN, PassWd;
+    JTextField UserN;
     JButton Loginbtn, cancelbtn;
+    JPasswordField p1;
     
  
     Login()
@@ -30,7 +31,7 @@ public class Login extends JFrame implements ActionListener
         label3 = new JLabel("Password:"); // password
         
         UserN = new JTextField(); // for 1st name
-        PassWd = new JTextField(); // for last name
+        p1 = new JPasswordField(); // for last name
         
  
         Loginbtn = new JButton("Login");
@@ -44,7 +45,7 @@ public class Login extends JFrame implements ActionListener
         label3.setBounds(80, 110, 250, 30);//last name
         
         UserN.setBounds(300, 70, 200, 30);
-        PassWd.setBounds(300, 110, 200, 30);
+        p1.setBounds(300, 110, 200, 30);
         
         Loginbtn.setBounds(150, 300, 120, 50); // register
         cancelbtn.setBounds(370, 300, 100, 50); //clear
@@ -53,7 +54,7 @@ public class Login extends JFrame implements ActionListener
         add(label2);
         add(UserN);
         add(label3);
-        add(PassWd);
+        add(p1);
         
         add(Loginbtn);
         add(cancelbtn);
@@ -67,7 +68,7 @@ public class Login extends JFrame implements ActionListener
             
 
        
-            if(UserN.getText().equals("") || PassWd.getText().equals("") )
+            if(UserN.getText().equals("") || p1.getPassword().equals("") )
             	
             	try {
             		JOptionPane.showMessageDialog(Loginbtn,  "Entry Fields can not be blank"); 
@@ -85,7 +86,7 @@ public class Login extends JFrame implements ActionListener
             }
         else {
         	 UserN.setText("");
-        	 PassWd.setText("");
+        	 p1.setText("");
         	 
         }
         
