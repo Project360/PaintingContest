@@ -81,6 +81,7 @@ public class Login extends JFrame implements ActionListener
             else
             {
           	  JOptionPane.showMessageDialog(Loginbtn, " Congradulation!!" + " \n You are Successfully Login");
+          	  setVisible = false;
 
              } 
             }
