@@ -23,7 +23,7 @@ public class PaintingContest {
 
 	public static void main(String[] args) {
 		//new Registration();
-		new Home_Screen();
+		new HomeScreen();
 	}
 	
 	/**

@@ -24,7 +24,7 @@ public class Login extends JFrame implements ActionListener
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle(" Login Window ");
  
-        label1 = new JLabel("Welcome To Login Window :");
+        label1 = new JLabel("Enter your information:");
         label1.setForeground(Color.blue);
         label1.setFont(new Font("Serif", Font.BOLD, 25));
  
@@ -101,10 +101,4 @@ public class Login extends JFrame implements ActionListener
         }
         
         } 
-          
-    
-    public static void main(String args[])
-   {
-        new Login();
-    }
-}
+ }

@@ -18,7 +18,7 @@ public class Registration extends JFrame implements ActionListener {
         getContentPane().setBackground(Color.green);
         setLayout(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setTitle("Painting  Contest Registration Form ");
+        setTitle("Registration Form ");
 
         label1 = new JLabel("Registration Form:");
         label1.setForeground(Color.blue);
