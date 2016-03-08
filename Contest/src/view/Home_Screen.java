@@ -65,7 +65,7 @@ public class Home_Screen {
 			}
 		});
 		
-		JButton btnNewButton = new JButton("Dawnload");
+		JButton btnNewButton = new JButton("Download");
 		
 		JButton btnSubmit = new JButton("Entry");
 		

@@ -22,7 +22,8 @@ public class PaintingContest {
 	private HashMap<Integer, Entry> myContestEntries;
 
 	public static void main(String[] args) {
-		new Registration();
+		//new Registration();
+		new Home_Screen();
 	}
 	
 	/**

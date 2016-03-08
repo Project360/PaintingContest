@@ -1,4 +1,5 @@
 package view;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,11 +16,11 @@ public class Login extends JFrame implements ActionListener
     Login()
      {	
     	//JFrame frame;
-        setVisible(true);
+       // setVisible(true);
         setSize(550, 450);
         getContentPane().setBackground(Color.green);
         setLayout(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle(" Login Window ");
  
         label1 = new JLabel("Welcome To Login Window :");
@@ -35,9 +36,16 @@ public class Login extends JFrame implements ActionListener
  
         Loginbtn = new JButton("Login");
         cancelbtn = new JButton("Cancel");
+        cancelbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getActionCommand().equals("Cancel")) {
+	                dispose();
+	            }
+			}
+		});
  
         Loginbtn.addActionListener(this);
-        cancelbtn.addActionListener(this);
+       // cancelbtn.addActionListener(this);
  
         label1.setBounds(100, 30, 400, 30);//registration form
         label2.setBounds(80, 70, 250, 30);//1st name
@@ -57,6 +65,7 @@ public class Login extends JFrame implements ActionListener
         
         add(Loginbtn);
         add(cancelbtn);
+        setVisible(true);
     }
  
     public void actionPerformed(ActionEvent e) 
