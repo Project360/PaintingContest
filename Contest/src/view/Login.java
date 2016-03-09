@@ -37,7 +37,7 @@ public class Login extends JFrame implements ActionListener
 
 
 		Loginbtn = new JButton("Login");
-		cancelbtn = new JButton("Cancel");
+		cancelbtn = new JButton("Clear");
 
 		Loginbtn.addActionListener(this);
 		//cancelbtn.addActionListener(this);
