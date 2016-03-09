@@ -80,5 +80,4 @@ public class HomeScreen extends JFrame{
         frame.setVisible(true);
 
 	}
-	
 }
