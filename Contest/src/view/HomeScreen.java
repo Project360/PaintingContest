@@ -51,7 +51,7 @@ public class HomeScreen extends JFrame{
 				new Registration();
 			}
 		});
-		btnNewButton_1.setBounds(91, 213, 141, 64);
+		btnNewButton_1.setBounds(91, 273, 141, 64);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("JUDGING");
@@ -67,7 +67,7 @@ public class HomeScreen extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_3.setBounds(421, 213, 141, 64);
+		btnNewButton_3.setBounds(421, 273, 141, 64);
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("ENTRY");
@@ -75,17 +75,8 @@ public class HomeScreen extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_4.setBounds(91, 305, 141, 62);
+		btnNewButton_4.setBounds(257, 274, 141, 62);
 		frame.getContentPane().add(btnNewButton_4);
-		
-		JButton btnNewButton_5 = new JButton("EXIT");
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		btnNewButton_5.setBounds(421, 305, 141, 62);
-		frame.getContentPane().add(btnNewButton_5);
         frame.setVisible(true);
 
 	}
