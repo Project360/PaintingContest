@@ -40,14 +40,7 @@ public class Login extends JFrame implements ActionListener
 		cancelbtn = new JButton("Clear");
 
 		Loginbtn.addActionListener(this);
-		//cancelbtn.addActionListener(this);
-		 cancelbtn.addActionListener(new ActionListener() {
-			 			public void actionPerformed(ActionEvent e) {
-			 				if (e.getActionCommand().equals("Cancel")) {
-			 	                dispose();
-			 	            }
-			 			}
-			 		});
+		cancelbtn.addActionListener(this);
 
 		label1.setBounds(100, 30, 400, 20);//
 		label2.setBounds(80, 100, 250, 30);//
@@ -91,12 +84,27 @@ public class Login extends JFrame implements ActionListener
 				JOptionPane.showMessageDialog(Loginbtn, " Congradulation!!" + " \n You are Successfully Login");
 				//setVisible = false;
 			}
-		} 
+		} else {	// cancel button
+			cancel();
+		}
 	}
 
 	@SuppressWarnings("unused")
 	private boolean LoginUser() {
 		// create a new Contestant
 		return true;
+	}
+
+	private void cancel() {
+		// clears all the textfields
+		UserN.setText("");
+		p1.setText("");
+	}
+
+
+
+	public static void main(String args[])
+	{
+		new Login();
 	}
 }
