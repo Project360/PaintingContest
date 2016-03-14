@@ -1,15 +1,24 @@
 package view;
 
 import javax.swing.*;
+
+import model.Contestant;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Registration extends JFrame implements ActionListener {
 
     JLabel label1, label2, label3, label4, label5, label6;
     JTextField firstN, lastN, phoneN, dob, emailadd;
     JButton regbtn, clearbtn;
+    int id = 0;
+    static Set<Integer> database = new HashSet<Integer>();
 
 
     Registration() {
@@ -17,8 +26,8 @@ public class Registration extends JFrame implements ActionListener {
         
         getContentPane().setBackground(Color.green);
         setLayout(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Painting  Contest Registration Form ");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setTitle("Registration Form ");
 
         label1 = new JLabel("Registration Form:");
         label1.setForeground(Color.blue);
@@ -88,7 +97,9 @@ public class Registration extends JFrame implements ActionListener {
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
-        	} else {	
+        	} else {
+        		registerUser();
+        		database.add(registerUser());
                 JOptionPane.showMessageDialog(regbtn, " Congradulation!!" + 
                 		" \n You are Successfully Registered");
         	}
@@ -97,9 +108,12 @@ public class Registration extends JFrame implements ActionListener {
         }
     }
     
-    private boolean registerUser() {
+    private int registerUser() {
     	// create a new Contestant
-    	return true;
+    	LocalDate dateOfBirth = LocalDate.parse(dob.getText(), DateTimeFormatter.BASIC_ISO_DATE);
+    	new Contestant(firstN.getText(), lastN.getText(),dateOfBirth);
+    	id += 1;
+    	return id;
     }
     
     private void cancel() {
@@ -113,6 +127,8 @@ public class Registration extends JFrame implements ActionListener {
 
 
     public static void main(String args[]) { 
+    	new Registration();
+    	System.out.println(database);
     	
     }
 }

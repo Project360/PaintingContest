@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class Contestant {
@@ -10,15 +12,15 @@ public class Contestant {
 	
 	private String myLastName;
 	private String myFirstName;
-	private Date myBirthday;
+	private LocalDate myBirthday;
 	private AgeGroup myAgeGroup;
 	private Entry myEntry;
 	
-	public Contestant(String theLastName, String theFirstName,
-				Date theBirthday) {
+	public Contestant(String theFirstName, String theLastName,
+				LocalDate date) {
 		myLastName = theLastName;
 		myFirstName = theFirstName;
-		myBirthday = theBirthday;
+		myBirthday = date;
 		myEntry = null;
 		setAgeGroup();
 	}
