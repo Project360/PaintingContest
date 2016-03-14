@@ -3,37 +3,44 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame implements ActionListener 
 { 
 
 	JLabel label1, label2, label3 ;
-	JTextField UserN;
+	JTextField UserN,p1;
 	JButton Loginbtn, cancelbtn;
-	JPasswordField p1;
+	
+	private HashMap<String,String> userInformations;
 
 
 	Login()
 	{	
 		//JFrame frame;
-		setVisible(true);
-		setSize(550, 450);
-		setBackground(Color.CYAN);
-		getContentPane().setBackground(Color.CYAN);
+		
+		setBackground(new Color(102, 205, 170));
+		getContentPane().setBackground(new Color(102, 205, 170));
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle(" Login Window ");
 
-		label1 = new JLabel("Welcome To Login Window :");
-		label1.setForeground(Color.blue);
-		label1.setFont(new Font("Serif", Font.BOLD, 25));
+		label1 = new JLabel("  Login:");
+		label1.setForeground(Color.BLACK);
+		label1.setFont(new Font("Serif", Font.BOLD, 17));
 
 		label2 = new JLabel("User Name:");// user name
-		label3 = new JLabel("Password:"); // password
+		label3 = new JLabel("Registration#:"); // password
 
 		UserN = new JTextField(); // user name
-		p1 = new JPasswordField(); // password
+		p1 = new JTextField(); // password
 
 
 		Loginbtn = new JButton("Login");
@@ -42,7 +49,7 @@ public class Login extends JFrame implements ActionListener
 		Loginbtn.addActionListener(this);
 		cancelbtn.addActionListener(this);
 
-		label1.setBounds(100, 30, 400, 20);//
+		label1.setBounds(100, 30, 400, 50);//
 		label2.setBounds(80, 100, 250, 30);//
 		label3.setBounds(80, 150, 250, 30);//
 
@@ -60,31 +67,73 @@ public class Login extends JFrame implements ActionListener
 
 		add(Loginbtn);
 		add(cancelbtn);
+		
+		// set visibility and size
+		setVisible(true);
+		setSize(550, 450);
 	}
 
 
 	private boolean validateForm() {
-		return (UserN.getText().equals("") || p1.getPassword().equals(""));
+		return (UserN.getText().equals("") || p1.getText().equals(""));
 	}
 	public void actionPerformed(ActionEvent e) 
 	{
-
+		boolean boolVar;
+        boolVar = false;
+       // boolean boolRegn; // registration #
+       // boolRegn = false;
 
 		if (e.getSource() == Loginbtn) {
 			if (validateForm()) {
 
 				try {
 					JOptionPane.showMessageDialog(Loginbtn, "Entry Fields can not be blank");
-				} catch (Exception ex) {
+				} 
+				catch (Exception ex) {
 					System.out.println(ex);
 				}
 			} 
-			else {	
-
-				JOptionPane.showMessageDialog(Loginbtn, " Congradulation!!" + " \n You are Successfully Login");
-				//setVisible = false;
+			else {
+				String pass= p1.getText();
+				String regn = UserN.getText();
+				
+				
+				
+				Scanner streamIn=null;
+				
+				try
+				{
+					streamIn=new Scanner(new FileInputStream("registeration.txt"));
+				}
+				catch(FileNotFoundException ex)
+				{
+					System.out.println("File Not Found");
+					System.exit(0);
+				}
+				while(streamIn.hasNextLine())
+				{
+					String line=streamIn.nextLine();
+					//String line2 = UserN.nextLine();
+					String[] theLine=line.split("\\|");
+					if(theLine[0].trim().equalsIgnoreCase(pass.trim()))
+					{
+						JOptionPane.showMessageDialog(Loginbtn, " Congradulation!!" + " \n You are Successfully Login");
+						boolVar = true;
+						dispose();
+						new HomeScreen();
+					}
+				}
+				
+				if (boolVar == false)
+				{
+					JOptionPane.showMessageDialog(Loginbtn, " Wrong Registration Number!!" + " \n Please Try Again");
+				}
+					
+				}
+				
 			}
-		} else {	// cancel button
+		else {	// cancel button
 			cancel();
 		}
 	}
@@ -103,8 +152,5 @@ public class Login extends JFrame implements ActionListener
 
 
 
-	public static void main(String args[])
-	{
-		new Login();
-	}
+	
 }
