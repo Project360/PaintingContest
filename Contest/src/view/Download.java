@@ -54,7 +54,7 @@ public class Download extends JFrame implements ActionListener{
         contentPane.setBackground( new Color(102, 205, 170));
         
      	
-        JMenu menu = new JMenu("File");
+        JMenu menu = new JMenu("Download");
         menu.add(Open = makeMenuItem("Open"));
         menu.add(Open = makeMenuItem("Save"));
         menu.add(Close = makeMenuItem("Quit"));
@@ -100,7 +100,7 @@ public class Download extends JFrame implements ActionListener{
 
      boolean openFile() throws IOException {
          JFileChooser fc = new JFileChooser();
-         fc.setDialogTitle("Open File");
+         fc.setDialogTitle("Open File to Download");
          fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
          fc.setCurrentDirectory(new File("."));
          fc.setFileFilter(fJavaFilter);
