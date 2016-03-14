@@ -2,45 +2,44 @@ package view;
 
 import javax.swing.*;
 
-import model.Contestant;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.Random;
+
+
+@SuppressWarnings("serial")
 public class Registration extends JFrame implements ActionListener {
-
+    String firstName,lasName,phoneNumber,ageGroup,emailAddress;
     JLabel label1, label2, label3, label4, label5, label6;
-    JTextField firstN, lastN, phoneN, dob, emailadd;
+    JTextField firstN, lastN, phoneN, age, emailadd;
     JButton regbtn, clearbtn;
-    int id = 0;
-    static Set<Integer> database = new HashSet<Integer>();
 
 
     Registration() {
         //JFrame frame;
         
-        getContentPane().setBackground(Color.green);
+        getContentPane().setBackground(new Color(102, 205, 170));
         setLayout(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setTitle("Registration Form ");
+        setTitle("Painting  Contest Registration Form ");
 
         label1 = new JLabel("Registration Form:");
-        label1.setForeground(Color.blue);
-        label1.setFont(new Font("Serif", Font.BOLD, 25));
+        label1.setForeground(Color.BLACK);
+        label1.setFont(new Font("Serif", Font.BOLD, 17));
 
         label2 = new JLabel("First Name:");
         label3 = new JLabel("Last Name:");
-        label4 = new JLabel("Date of Birth:");
+        label4 = new JLabel("Age:");
         label5 = new JLabel("Email Address:");
         label6 = new JLabel("Phone Number:");
         firstN = new JTextField(); // for 1st name
         lastN = new JTextField(); // for last name
-        dob = new JTextField(); // for dob
+        age = new JTextField(); // for age
         emailadd = new JTextField(); // for email add
         phoneN = new JTextField(); // phone #
 
@@ -58,7 +57,7 @@ public class Registration extends JFrame implements ActionListener {
         label6.setBounds(80, 230, 250, 30);// phone number
         firstN.setBounds(300, 70, 200, 30);
         lastN.setBounds(300, 110, 200, 30);
-        dob.setBounds(300, 150, 200, 30);
+        age.setBounds(300, 150, 200, 30);
         emailadd.setBounds(300, 190, 200, 30);
         phoneN.setBounds(300, 230, 200, 30);
         regbtn.setBounds(150, 300, 120, 50); // register
@@ -70,7 +69,7 @@ public class Registration extends JFrame implements ActionListener {
         add(label3);
         add(lastN);
         add(label4);
-        add(dob);
+        add(age);
         add(label5);
         add(emailadd);
         add(label6);
@@ -85,7 +84,7 @@ public class Registration extends JFrame implements ActionListener {
 
     private boolean validateForm() {
     	return (firstN.getText().equals("") || lastN.getText().equals("") ||
-                dob.getText().equals("") || emailadd.getText().equals("") ||
+                age.getText().equals("") || emailadd.getText().equals("") ||
                 phoneN.getText().equals(""));
     }
     public void actionPerformed(ActionEvent e) {
@@ -97,38 +96,63 @@ public class Registration extends JFrame implements ActionListener {
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
-        	} else {
-        		registerUser();
-        		database.add(registerUser());
+        	} 
+        	
+        	
+        	else {
+        		
+        		PrintWriter outputStream = null;
+        		try {
+					outputStream = new PrintWriter( new FileOutputStream("registeration.txt",true));
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        		Random r = new Random( System.currentTimeMillis() );
+        		int random = (1 + r.nextInt(2)) * 10000 + r.nextInt(10000);
+        		String strI = Integer.toString(random);
+        		firstName = firstN.getText();
+        		lasName =  lastN.getText();
+        		phoneNumber = phoneN.getText();
+        		ageGroup = age.getText();
+        		emailAddress = emailadd.getText();
+        		outputStream.println(strI+"|"+firstName+","+lasName+","+phoneNumber+","+ageGroup+","+emailAddress);
                 JOptionPane.showMessageDialog(regbtn, " Congradulation!!" + 
-                		" \n You are Successfully Registered");
+                		" \n You are Successfully Registered" + "\n Your Registration # is  "+strI + " and " + "\n User Name is " +firstName);
+                outputStream.close();
+                new Login();
+                dispose();
+                
         	}
-        } else {	// cancel button
+        	
+        } 
+        
+        
+        else {	// cancel button
             cancel();
+            
         }
-    }
+        }
+        
     
-    private int registerUser() {
+    
+    @SuppressWarnings("unused")
+	private boolean registerUser() {
     	// create a new Contestant
-    	LocalDate dateOfBirth = LocalDate.parse(dob.getText(), DateTimeFormatter.BASIC_ISO_DATE);
-    	new Contestant(firstN.getText(), lastN.getText(),dateOfBirth);
-    	id += 1;
-    	return id;
+    	return true;
     }
     
     private void cancel() {
     	// clears all the textfields
     	firstN.setText("");
         lastN.setText("");
-        dob.setText("");
+        age.setText("");
         emailadd.setText("");
         phoneN.setText("");
     }
+    
 
 
-    public static void main(String args[]) { 
-    	new Registration();
-    	System.out.println(database);
-    	
-    }
+   
+    
 }

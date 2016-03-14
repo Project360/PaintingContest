@@ -10,6 +10,10 @@ import java.awt.Color;
 
 public class HomeScreen extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 
 	/**
@@ -17,6 +21,30 @@ public class HomeScreen extends JFrame{
 	 */
 	public HomeScreen() {
 		initialize();
+		Registration();
+		Download();
+		JudgingScreen();
+	}
+	// comment
+
+	private void JudgingScreen() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void Login() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void Download() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void Registration() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -36,47 +64,49 @@ public class HomeScreen extends JFrame{
 		lblWelcomeToThe.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblWelcomeToThe);
 		
-		JButton btnNewButton = new JButton("LOGIN");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnRegister = new JButton("REGISTER");//download
+		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new Login();
-			}
-		});
-		btnNewButton.setBounds(91, 120, 141, 64);
-		frame.getContentPane().add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("REGISTER");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 				new Registration();
 			}
 		});
-		btnNewButton_1.setBounds(91, 273, 141, 64);
-		frame.getContentPane().add(btnNewButton_1);
+		btnRegister.setBounds(91, 120, 141, 64);
+		frame.getContentPane().add(btnRegister);
 		
-		JButton btnNewButton_2 = new JButton("JUDGING");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnLogin = new JButton("LOGIN");//reg -->login
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Login();
+			}
+		});
+		btnLogin.setBounds(91, 273, 141, 64);
+		//frame.getContentPane().add(btnNewButton_1);
+		
+		JButton btnDownload = new JButton("DOWNLOAD");//login
+		btnDownload.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Download();
+			}
+		});
+		btnDownload.setBounds(421, 120, 141, 64);
+		frame.getContentPane().add(btnDownload);
+		
+		JButton btnJudge = new JButton("JUDGE SCREEN");
+		btnJudge.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnJudge.setBounds(421, 273, 141, 64);
+		frame.getContentPane().add(btnJudge);
+		
+		JButton btnEntry = new JButton("ENTRY");
+		btnEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(421, 120, 141, 64);
-		frame.getContentPane().add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("DOWNLOAD");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_3.setBounds(421, 273, 141, 64);
-		frame.getContentPane().add(btnNewButton_3);
-		
-		JButton btnNewButton_4 = new JButton("ENTRY");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_4.setBounds(257, 274, 141, 62);
-		frame.getContentPane().add(btnNewButton_4);
+		btnEntry.setBounds(91, 273, 141, 64);
+		frame.getContentPane().add(btnEntry);
         frame.setVisible(true);
 
 	}
