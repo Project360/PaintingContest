@@ -1,9 +1,20 @@
+/*
+ * 
+  @Minyahil Kebebbegn
+ 
+  */
+
+
 package view;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
   @SuppressWarnings("serial")
@@ -11,13 +22,20 @@ public class Download extends JFrame implements ActionListener{
    // instance variables
    
     
-      JButton CompanyA;
-      JButton load;
-      JButton quit;
-      private JButton btnCompanyB;
-      private JButton btnCompanyC;
-      private JButton btnCompanyD;
-      private JLabel lblChoosePaintingTo;
+      
+     
+      JMenuItem Open = null;
+      JMenuItem Save = null;
+      JMenuItem Close = null;
+      JTextArea fTextArea;
+      static JLabel label;
+      static BufferedImage icon;
+      static File file;
+      JFileChooser fc;
+      ImageFilter1 fJavaFilter = new ImageFilter1();
+      static File FilterFile;
+      
+      
      
   	
   
@@ -29,141 +47,147 @@ public class Download extends JFrame implements ActionListener{
      Download(){
         Container contentPane;
      
-     
-     
        //Set the frame properties
-        setSize         (975, 725);
-        setResizable    (false);
-        setTitle        ("Download Screen");
-        setLocation     (150, 250);
-        setVisible(true);
-     
+        
         contentPane = getContentPane();
         contentPane.setLayout(null);
-        contentPane.setBackground( Color.cyan );
-        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-     
-       //Create and Place the Buttons on the frame
-        
-        CompanyA = new JButton("Company A");
-        CompanyA.setBounds(6, 106, 171, 113);
-        contentPane.add(CompanyA);
-        CompanyA.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				String url = "http://r.ddmcdn.com/w_830/s_f/o_1/cx_98/cy_0/cw_640/ch_360/APL/uploads/2015/07/cecil-AP463227356214-1000x400.jpg";
-				try {
-					java.awt.Desktop.getDesktop().browse(
-							java.net.URI.create(url));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			
-			}
-		});
+        contentPane.setBackground( new Color(102, 205, 170));
         
      	
-        load = new JButton("Download");
-        load.setBounds(314, 613, 158, 67);
-        contentPane.add(load);
-     	
-        quit = new JButton("Quit");
-        quit.setBounds(611, 613, 153, 67);
-        contentPane.add(quit);
+        JMenu menu = new JMenu("File");
+        menu.add(Open = makeMenuItem("Open"));
+        menu.add(Open = makeMenuItem("Save"));
+        menu.add(Close = makeMenuItem("Quit"));
+        JMenuBar Menubar = new JMenuBar();
+        Menubar.add(menu);
+        setJMenuBar(Menubar);
+        setSize(550, 450);
+        setVisible(true);
         
-        btnCompanyB = new JButton("Company B");
-        btnCompanyB.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		String url = "http://img.izismile.com/img/img8/20160106/640/animals_who_look_like_they_had_a_rough_night_640_03.jpg";
-				try {
-					java.awt.Desktop.getDesktop().browse(
-							java.net.URI.create(url));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			
-        	}
-        });
-        btnCompanyB.setBounds(6, 231, 171, 113);
-        getContentPane().add(btnCompanyB);
-        
-        
-        
-        btnCompanyC = new JButton("Company C");
-        btnCompanyC.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		String url = "http://www.wired.com/wp-content/uploads/2015/04/85120553.jpg";
-				try {
-					java.awt.Desktop.getDesktop().browse(
-							java.net.URI.create(url));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-        	}
-        });
-        btnCompanyC.setBounds(6, 356, 171, 113);
-        getContentPane().add(btnCompanyC);
-        
-        btnCompanyD = new JButton("Company D");
-        btnCompanyD.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		String url = "http://i.telegraph.co.uk/multimedia/archive/03379/animals-smile_3379238k.jpg";
-				try {
-					java.awt.Desktop.getDesktop().browse(
-							java.net.URI.create(url));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-        	}
-        });
-        btnCompanyD.setBounds(6, 481, 171, 113);
-        getContentPane().add(btnCompanyD);
-        
-        lblChoosePaintingTo = new JLabel("Choose Painting  to Download");
-        lblChoosePaintingTo.setHorizontalAlignment(SwingConstants.CENTER);
-        lblChoosePaintingTo.setFont(new Font("Lucida Grande", Font.BOLD, 18));
-        lblChoosePaintingTo.setBounds(210, 25, 292, 36);
-        getContentPane().add(lblChoosePaintingTo);
-     	
-        
-		
-
-     
-       //Register this frame as an Action listener of the buttons
-        CompanyA.addActionListener(this);
-        load.addActionListener(this);
-        quit.addActionListener(this);
-        
- 
-       //Exit program when the viewer is closed
-        
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+       
      }
   
    //Event handler
      public void actionPerformed(ActionEvent e){
-    	 if (e.getSource() == quit){
-                //System.exit(0);
-    		 	setVisible(false);
-				Home_Screen.setVisible(true);
+    	 boolean status = false;
+         String command = e.getActionCommand();
+         if (command.equals("Open")) {
+             try {
+                 status = openFile();
+             } catch (IOException e1) {
+                 // TODO Auto-generated catch block
+                 e1.printStackTrace();
              }
-        }
-        
-           
-        
-        
+             if (!status)
+                 JOptionPane.showMessageDialog(null, "Error opening file!",
+                         "File Open Error", JOptionPane.ERROR_MESSAGE);
+         } else if (command.equals("Save")) {
+             status = saveFile();
+             if (!status)
+                 JOptionPane.showMessageDialog(null,
+                         "IO error in saving file!!", "File Save Error",
+                         JOptionPane.ERROR_MESSAGE);
+         } else if (command.equals("Quit")) {
+             dispose();
+         }
+     }
+
+     private JMenuItem makeMenuItem(String name) {
+         JMenuItem m = new JMenuItem(name);
+         m.addActionListener(this);
+         return m;
+     }
+
+     boolean openFile() throws IOException {
+         JFileChooser fc = new JFileChooser();
+         fc.setDialogTitle("Open File");
+         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+         fc.setCurrentDirectory(new File("."));
+         fc.setFileFilter(fJavaFilter);
+         int result = fc.showOpenDialog(this);
+         if (result == JFileChooser.CANCEL_OPTION) {
+             return true;
+         } else if (result == JFileChooser.APPROVE_OPTION) {
+
+             FilterFile = fc.getSelectedFile();
+             file = FilterFile;
+             System.out.println(FilterFile);
+             FileInputStream fileInputStream = new FileInputStream(FilterFile);
+             System.out.println(fileInputStream);
+             System.out.println(FilterFile.getAbsolutePath());
+             icon = ImageIO.read(fileInputStream);
+             label = new JLabel(new ImageIcon(icon));
+             label.setBounds(0, 0, 500, 500);
+             label.setVisible(true);
+             getContentPane().add(label);
+             // Set the position of its text, relative to its icon:
+             label.setVerticalTextPosition(JLabel.BOTTOM);
+             label.setHorizontalTextPosition(JLabel.CENTER);
+         } else {
+             return false;
+         }
+         return true;
+     }
+
+     boolean saveFile() {
+         File file = null;
+         fc = new JFileChooser();
+         javax.swing.filechooser.FileFilter filter = null;
+         fc.setCurrentDirectory(new File("."));
+         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+         fc.addChoosableFileFilter(filter);
+         filter = fc.getFileFilter();
+         fc.setFileFilter(fJavaFilter);
+         fc.setSelectedFile(FilterFile);
+         int result = fc.showSaveDialog(this);
+         if (result == JFileChooser.CANCEL_OPTION) {
+             return true;
+         } else if (result == JFileChooser.APPROVE_OPTION) {
+             FilterFile = fc.getSelectedFile();
+             if (FilterFile.exists()) {
+                 int response = JOptionPane.showConfirmDialog(null,
+                         "File already exist! Do you want to overwrite existing file?", "Confirm Overwrite",
+                         JOptionPane.OK_CANCEL_OPTION,
+                         JOptionPane.QUESTION_MESSAGE);
+                 if (response == JOptionPane.CANCEL_OPTION)
+                     return false;
+             }
+             return writeFile(FilterFile, label);
+         } else {
+             return false;
+         }
+     }
+
+     public static boolean writeFile(File file, Object component) {
+         try {
+
+             BufferedImage i1 = ImageIO.read(file);
+             BufferedImage bi = new BufferedImage(i1.getWidth(), i1.getHeight(),
+                     BufferedImage.TYPE_INT_RGB);
+             Graphics g = bi.createGraphics();
+             ImageIO.write(i1, "png", FilterFile);
+         } catch (IOException e) {
+             return false;
+         }
+         return true;
+     }
+
+class ImageFilter1 extends javax.swing.filechooser.FileFilter {
+    public boolean accept(File f) {
+        return f.getName().toLowerCase().endsWith(".png")
+                || f.getName().toLowerCase().endsWith(".jpg")
+                || f.getName().toLowerCase().endsWith(".jif")
+                || f.isDirectory();
+    }
+
+    public String getDescription() {
+        return " (*.png) File";
+    }
+
+
         	
-     public static void main(String[] args){
-          new Download();
-        // frame.setVisible(true);
-      	
-      
-       
-      }
-  	 	
+}
+
   	
   }
 
