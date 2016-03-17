@@ -19,12 +19,8 @@ import java.io.IOException;
 
   @SuppressWarnings("serial")
 public class Download extends JFrame implements ActionListener{
-   // instance variables
-   
-    
-      
-     
-      JMenuItem Open = null;
+	 // instance variables
+	  JMenuItem Open = null;
       JMenuItem Save = null;
       JMenuItem Close = null;
       JTextArea fTextArea;
@@ -44,7 +40,7 @@ public class Download extends JFrame implements ActionListener{
     */
       
      
-     Download(){
+     public Download(){
         Container contentPane;
      
        //Set the frame properties
@@ -139,6 +135,7 @@ public class Download extends JFrame implements ActionListener{
          filter = fc.getFileFilter();
          fc.setFileFilter(fJavaFilter);
          fc.setSelectedFile(FilterFile);
+         
          int result = fc.showSaveDialog(this);
          if (result == JFileChooser.CANCEL_OPTION) {
              return true;

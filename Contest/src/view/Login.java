@@ -93,55 +93,49 @@ public class Login extends JFrame implements ActionListener
 				catch (Exception ex) {
 					System.out.println(ex);
 				}
-			} 
-			else {
-				String pass= p1.getText();
-				String regn = UserN.getText();
-				
-				
-				
-				Scanner streamIn=null;
-				
-				try
-				{
-					streamIn=new Scanner(new FileInputStream("registeration.txt"));
+			} else {
+				if (!LoginUser()) {
+					JOptionPane.showMessageDialog(Loginbtn, 
+							" Wrong Registration Number!!" + " \n Please Try Again");
+				} else {
+					new HomeScreen();
 				}
-				catch(FileNotFoundException ex)
-				{
-					System.out.println("File Not Found");
-					System.exit(0);
-				}
-				while(streamIn.hasNextLine())
-				{
-					String line=streamIn.nextLine();
-					//String line2 = UserN.nextLine();
-					String[] theLine=line.split("\\|");
-					if(theLine[0].trim().equalsIgnoreCase(pass.trim()))
-					{
-						JOptionPane.showMessageDialog(Loginbtn, " Congradulation!!" + " \n You are Successfully Login");
-						boolVar = true;
-						dispose();
-						new HomeScreen();
-					}
-				}
-				
-				if (boolVar == false)
-				{
-					JOptionPane.showMessageDialog(Loginbtn, " Wrong Registration Number!!" + " \n Please Try Again");
-				}
-					
-				}
-				
 			}
-		else {	// cancel button
+		} else {	// cancel button
 			cancel();
 		}
 	}
 
 	@SuppressWarnings("unused")
 	private boolean LoginUser() {
-		// create a new Contestant
-		return true;
+		String pass= p1.getText();
+		String regn = UserN.getText();
+		
+		Scanner streamIn=null;
+		
+		try
+		{
+			streamIn=new Scanner(new FileInputStream("registeration.txt"));
+		}
+		catch(FileNotFoundException ex)
+		{
+			System.out.println("File Not Found");
+			System.exit(0);
+		}
+		while(streamIn.hasNextLine())
+		{
+			String line=streamIn.nextLine();
+			//String line2 = UserN.nextLine();
+			String[] theLine=line.split("\\|");
+			if(theLine[0].trim().equalsIgnoreCase(pass.trim()))
+			{
+				JOptionPane.showMessageDialog(Loginbtn, " Congradulation!!" + " \n You are Successfully Login");
+				dispose();
+				return true;
+				
+			}
+		}
+		return false;
 	}
 
 	private void cancel() {

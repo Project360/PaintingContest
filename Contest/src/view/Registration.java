@@ -96,10 +96,7 @@ public class Registration extends JFrame implements ActionListener {
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
-        	} 
-        	
-        	
-        	else {
+        	} else {
         		
         		PrintWriter outputStream = null;
         		try {
@@ -125,14 +122,11 @@ public class Registration extends JFrame implements ActionListener {
                 
         	}
         	
-        } 
-        
-        
-        else {	// cancel button
+        }  else {	// cancel button
             cancel();
             
         }
-        }
+    }
         
     
     
