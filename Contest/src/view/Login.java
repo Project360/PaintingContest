@@ -94,7 +94,9 @@ public class Login extends JFrame implements ActionListener
 					System.out.println(ex);
 				}
 			} else {
-				if (!LoginUser()) {
+				String pass= p1.getText();
+				String regn = UserN.getText();
+				if (!LoginUser(pass, regn)) {
 					JOptionPane.showMessageDialog(Loginbtn, 
 							" Wrong Registration Number!!" + " \n Please Try Again");
 				} else {
@@ -106,11 +108,14 @@ public class Login extends JFrame implements ActionListener
 		}
 	}
 
-	@SuppressWarnings("unused")
-	private boolean LoginUser() {
-		String pass= p1.getText();
-		String regn = UserN.getText();
-		
+	/***
+	 * 
+	 * @param pass
+	 * @param regn
+	 * @return
+	 * @throws FileNotFoundException if the file is not found
+	 */
+	public boolean LoginUser(String pass, String regn) {
 		Scanner streamIn=null;
 		
 		try

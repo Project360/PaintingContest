@@ -21,31 +21,8 @@ public class HomeScreen extends JFrame{
 	 */
 	public HomeScreen() {
 		initialize();
-		Registration();
-		Download();
-		JudgingScreen();
 	}
-	// comment
-
-	private void JudgingScreen() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void Login() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void Download() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void Registration() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -103,6 +80,7 @@ public class HomeScreen extends JFrame{
 		JButton btnEntry = new JButton("ENTRY");
 		btnEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnEntry.setBounds(91, 273, 141, 64);

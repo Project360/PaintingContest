@@ -82,7 +82,7 @@ public class Registration extends JFrame implements ActionListener {
         setSize(550, 450);
     }
 
-    private boolean validateForm() {
+    public boolean validateForm() {
     	return (firstN.getText().equals("") || lastN.getText().equals("") ||
                 age.getText().equals("") || emailadd.getText().equals("") ||
                 phoneN.getText().equals(""));
@@ -97,43 +97,37 @@ public class Registration extends JFrame implements ActionListener {
                     System.out.println(ex);
                 }
         	} else {
-        		
-        		PrintWriter outputStream = null;
-        		try {
-					outputStream = new PrintWriter( new FileOutputStream("registeration.txt",true));
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-        		Random r = new Random( System.currentTimeMillis() );
-        		int random = (1 + r.nextInt(2)) * 10000 + r.nextInt(10000);
-        		String strI = Integer.toString(random);
-        		firstName = firstN.getText();
-        		lasName =  lastN.getText();
-        		phoneNumber = phoneN.getText();
-        		ageGroup = age.getText();
-        		emailAddress = emailadd.getText();
-        		outputStream.println(strI+"|"+firstName+","+lasName+","+phoneNumber+","+ageGroup+","+emailAddress);
-                JOptionPane.showMessageDialog(regbtn, " Congradulation!!" + 
-                		" \n You are Successfully Registered" + "\n Your Registration # is  "+strI + " and " + "\n User Name is " +firstName);
-                outputStream.close();
-                new Login();
+        		registerUser();
+        		new Login();
                 dispose();
-                
         	}
-        	
         }  else {	// cancel button
-            cancel();
-            
+            cancel(); 
         }
     }
         
     
-    
-    @SuppressWarnings("unused")
-	private boolean registerUser() {
+	protected void registerUser() {
     	// create a new Contestant
-    	return true;
+    	PrintWriter outputStream = null;
+		try {
+			outputStream = new PrintWriter( new FileOutputStream("registeration.txt",true));
+			Random r = new Random( System.currentTimeMillis() );
+			int random = (1 + r.nextInt(2)) * 10000 + r.nextInt(10000);
+			String strI = Integer.toString(random);
+			firstName = firstN.getText();
+			lasName =  lastN.getText();
+			phoneNumber = phoneN.getText();
+			ageGroup = age.getText();
+			emailAddress = emailadd.getText();
+			outputStream.println(strI+"|"+firstName+","+lasName+","+phoneNumber+","+ageGroup+","+emailAddress);
+	        JOptionPane.showMessageDialog(regbtn, " Congradulation!!" + 
+	        		" \n You are Successfully Registered" + "\n Your Registration # is  "+strI + " and " + "\n User Name is " +firstName);
+	        outputStream.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     }
     
     private void cancel() {
