@@ -18,6 +18,8 @@ public class Login extends JFrame implements ActionListener
 	JLabel label1, label2, label3 ;
 	JTextField UserN,p1;
 	JButton Loginbtn, cancelbtn;
+	static String register;
+	private static boolean exampleBool = false;
 	
 	private HashMap<String,String> userInformations;
 
@@ -154,6 +156,11 @@ public class Login extends JFrame implements ActionListener
 		UserN.setText("");
 		p1.setText("");
 	}
+	
+	public static String getRegister() {
+		return register;
+	}
+	public static boolean ReturnExampleBool () {return exampleBool ;}
 
 
 

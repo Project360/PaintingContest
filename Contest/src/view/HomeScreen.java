@@ -8,11 +8,14 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 
+/**
+ * 
+ * @author Minyahil Kebebbegn
+ * @author Sara Vandandaigue - refactoring
+ *
+ */
 public class HomeScreen extends JFrame{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 
@@ -83,7 +86,7 @@ public class HomeScreen extends JFrame{
 		JButton btnEntry = new JButton("ENTRY");
 		btnEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new Submit();
 			}
 		});
 		btnEntry.setBounds(91, 273, 141, 64);

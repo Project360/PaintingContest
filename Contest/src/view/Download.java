@@ -1,10 +1,3 @@
-/*
- * 
-  @Minyahil Kebebbegn
- 
-  */
-
-
 package view;
 
 import javax.imageio.ImageIO;
@@ -17,13 +10,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * 
+ * @author Minyahil Kebebbegn, Vinh Tran
+ *
+ */
   @SuppressWarnings("serial")
 public class Download extends JFrame implements ActionListener{
    // instance variables
-   
-    
-     
-      JButton load;
+	  JButton load;
       JButton quit;
       private JButton CompanyA;
       private JButton btnCompanyB;
@@ -270,20 +265,15 @@ public class Download extends JFrame implements ActionListener{
 //    		 	setVisible(false);
 //				Home_Screen.setVisible(true);
     		 dispose();
-             }
-        }
+         }
+     }
         
-           
-        
-        
-        	
      public static void main(String[] args){
           new Download();
         // frame.setVisible(true);
-      	
-      
-       
-      }
+     }
+     
+     
      public class ImageCopy extends JFrame implements ActionListener {
     	    JMenuItem fMenuOpen = null;
     	    JMenuItem fMenuSave = null;
