@@ -136,9 +136,9 @@ public class Login extends JFrame implements ActionListener
 			//String line2 = UserN.nextLine();
 			String[] theLine=line.split("\\|");
 			//System.out.println("Account:" + theLine[0] + " name:" + theLine[1]);
-			String[] userInfo = theLine[1].split(",");
+			//String[] userInfo = theLine[1].split(",");
 			if(theLine[0].trim().equalsIgnoreCase(pass.trim()) && 
-					userInfo[0].trim().equalsIgnoreCase(regn.trim()))
+					theLine[1].trim().equalsIgnoreCase(regn.trim()))
 			{
 				foundUser = true;
 			}

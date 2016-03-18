@@ -118,8 +118,8 @@ public class RegistrationTest {
 			while (in.hasNextLine()) {
 				String line = in.nextLine();
 				String[] theLine = line.split("\\|");
-				String[] userInfo = theLine[1].split(",");
-				if(userInfo[0].trim().equalsIgnoreCase(user.getFirst()))
+				//String[] userInfo = theLine[1].split(",");
+				if(theLine[1].trim().equalsIgnoreCase(user.getFirst()))
 				{
 					foundUser = true;
 				}

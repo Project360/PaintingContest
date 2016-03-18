@@ -195,7 +195,7 @@ public class Registration extends JFrame implements ActionListener {
 			int random = (1 + r.nextInt(2)) * 10000 + r.nextInt(10000);
 			String strI = Integer.toString(random);
 			
-			outputStream.println(strI+"|" + user.getFirst() + DEL + user.getLast() + DEL +
+			outputStream.println(strI+"|" + user.getFirst() + "|" + user.getLast() + "|" +
 					user.getPhone() + DEL + user.getAgeGroup() + DEL + user.getEmail());
 			//outputStream.println(strI+"|"+firstName+","+lasName+","+phoneNumber+","+ageGroup+","+emailAddress);
 	        JOptionPane.showMessageDialog(regbtn, " Congradulation!!" + 
