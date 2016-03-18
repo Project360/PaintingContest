@@ -61,7 +61,7 @@ public class LoginTest {
 	 */
 	@Test
 	public final void testLoginUserValid() {
-		String regNo = "19511";
+		String regNo = "27046";
 		String user = "Sara";
 		Assert.assertTrue(loginPage.LoginUser(regNo, user));
 	}
