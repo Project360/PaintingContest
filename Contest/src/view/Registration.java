@@ -89,7 +89,7 @@ public class Registration extends JFrame implements ActionListener {
         setSize(550, 450);
     }
 
-    protected boolean validateForm() {
+    public boolean validateForm() {
     	if (fieldsAreEmpty()) {
     		try {
                 JOptionPane.showMessageDialog(regbtn, "Entry Fields can not be blank");
@@ -162,7 +162,7 @@ public class Registration extends JFrame implements ActionListener {
     
     public boolean validAge(String age) {
     	int ageNo = Integer.parseInt(age);
-    	return (ageNo > 2 || ageNo < 100);
+    	return (ageNo >= 2 && ageNo <= 100);
     }
     
     public boolean fieldsAreEmpty() {

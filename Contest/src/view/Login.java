@@ -127,17 +127,23 @@ public class Login extends JFrame implements ActionListener
 			System.out.println("File Not Found");
 			System.exit(0);
 		}
+		boolean foundUser = false;
 		while(streamIn.hasNextLine())
 		{
 			String line=streamIn.nextLine();
 			//String line2 = UserN.nextLine();
 			String[] theLine=line.split("\\|");
-			if(theLine[0].trim().equalsIgnoreCase(pass.trim()))
+			//System.out.println("Account:" + theLine[0] + " name:" + theLine[1]);
+			String[] userInfo = theLine[1].split(",");
+			if(theLine[0].trim().equalsIgnoreCase(pass.trim()) && 
+					userInfo[0].trim().equalsIgnoreCase(regn.trim()))
 			{
+				foundUser = true;
+			}
+			if (foundUser) {
 				JOptionPane.showMessageDialog(Loginbtn, " Congradulation!!" + " \n You are Successfully Login");
 				dispose();
 				return true;
-				
 			}
 		}
 		return false;
