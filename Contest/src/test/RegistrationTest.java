@@ -27,6 +27,7 @@ public class RegistrationTest {
 	Registration reg;
 	Contestant user;
 	Contestant user2;
+	Contestant invalid;
 
 	/**
 	 * @throws java.lang.Exception
@@ -36,6 +37,7 @@ public class RegistrationTest {
 		reg = new Registration();
 		user = new Contestant("Sara", "Vandandaigue", "206-794-0123", "30", "sv3@uw.edu");
 		user2 = new Contestant("George", "Vandandaigue", "206-794-0123", "30", "sv3@uw.edu");
+		invalid = new Contestant("ERROR", "Vandandaigue", "206-794-0123", "30", "sv3@uw.edu");
 	}
 
 	/**
@@ -44,14 +46,9 @@ public class RegistrationTest {
 	@After
 	public void tearDown() throws Exception {
 		reg = null;
-	}
-
-	/**
-	 * Test method for {@link view.Registration#validateForm()}.
-	 */
-	@Test
-	public final void testValidateForm() {
-		fail("Not yet implemented");
+		user = null;
+		user2 = null;
+		invalid = null;
 	}
 
 	/**
@@ -112,7 +109,7 @@ public class RegistrationTest {
 	 * Test method for {@link view.Registration#registerUser(model.Contestant)}.
 	 */
 	@Test
-	public final void testRegisterUser() {
+	public final void testRegisterUserValid() {
 		// test writing to file and reading file
 		reg.registerUser(user);
 		boolean foundUser = false;
@@ -121,8 +118,9 @@ public class RegistrationTest {
 			while (in.hasNextLine()) {
 				String line = in.nextLine();
 				String[] theLine = line.split("\\|");
-				if(theLine[1].trim().equalsIgnoreCase(user.getFirst())) {
-					System.out.println(theLine[1]);
+				String[] userInfo = theLine[1].split(",");
+				if(userInfo[0].trim().equalsIgnoreCase(user.getFirst()))
+				{
 					foundUser = true;
 				}
 			}
@@ -131,6 +129,32 @@ public class RegistrationTest {
 			e.printStackTrace();
 		}
 		Assert.assertTrue(foundUser);
+	}
+	
+	/**
+	 * Test method for {@link view.Registration#registerUser(model.Contestant)}.
+	 */
+	@Test
+	public final void testRegisterUserInvalid() {
+		// test writing to file and reading file
+		reg.registerUser(user2);
+		boolean foundUser = false;
+		try {
+			Scanner in = new Scanner(new File("registeration.txt"));
+			while (in.hasNextLine()) {
+				String line = in.nextLine();
+				String[] theLine = line.split("\\|");
+				String[] userInfo = theLine[1].split(",");
+				if(userInfo[0].trim().equalsIgnoreCase(invalid.getFirst()))
+				{
+					foundUser = true;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Assert.assertFalse(foundUser);
 	}
 
 }

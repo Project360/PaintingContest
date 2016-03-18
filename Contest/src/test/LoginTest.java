@@ -21,6 +21,7 @@ import view.Login;
  *
  */
 public class LoginTest {
+	
 	private Login loginPage;
 
 	/**
