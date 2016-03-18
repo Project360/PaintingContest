@@ -11,6 +11,12 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * This class represents the login feature of the GUI
+ * @author 
+ * @author Sara Vandandaigue - refactoring
+ * @version 1.0
+ */
 @SuppressWarnings("serial")
 public class Login extends JFrame implements ActionListener 
 { 

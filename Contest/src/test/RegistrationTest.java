@@ -1,5 +1,5 @@
 /**
- * 
+ * TCSS360 Sara Vandandaigue
  */
 package test;
 
@@ -18,6 +18,7 @@ import model.Contestant;
 import view.Registration;
 
 /**
+ * This class repesents the tests for the Registration class.
  * @author Sara Vandandaigue
  * @version 03/17/2016
  *

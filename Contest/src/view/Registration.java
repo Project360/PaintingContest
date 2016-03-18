@@ -13,7 +13,11 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Random;
 
-
+/**
+ * @author Minyahil Kebebegn, Vinh Tran
+ * @author Sara Vandandaigue - refactoring
+ *
+ */
 @SuppressWarnings("serial")
 public class Registration extends JFrame implements ActionListener {
 	private Contestant theContestant;
