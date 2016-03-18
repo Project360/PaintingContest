@@ -16,6 +16,9 @@ public class HomeScreen extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 
+	public static void main(String[] args) {
+		new HomeScreen();
+	}
 	/**
 	 * Create the application.
 	 */

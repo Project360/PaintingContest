@@ -6,32 +6,46 @@ import java.util.Date;
 
 public class Contestant {
 	
-	public enum AgeGroup {
-		AGE_UNDER_10, AGE_10_TO_14, AGE_ABOVE_14
-	}
-	
 	private String myLastName;
 	private String myFirstName;
-	private LocalDate myBirthday;
-	private AgeGroup myAgeGroup;
+	private String myBirthday;
+	private String phone;
+	private String email;
+	private String ageGroup;
+	//private AgeGroup myAgeGroup;
 	private Entry myEntry;
 	
 	public Contestant(String theFirstName, String theLastName,
-				LocalDate date) {
+				String phone, String age, String email) {
 		myLastName = theLastName;
 		myFirstName = theFirstName;
-		myBirthday = date;
+		this.phone = phone;
+		ageGroup = age;
+		this.email = email;
 		myEntry = null;
-		setAgeGroup();
 	}
 	
-	private void setAgeGroup() {
-		// based on birthday set myAgeGroup
+	public String getAgeGroup() {
+		return ageGroup;
 	}
 	
-	public boolean submitEntry() {
-		// create Entry object
-		return true;
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getPhone() {
+		return phone;
+	}
+	
+	public String getLast() {
+		return myLastName;
+	}
+	public String getFirst() {
+		return myFirstName;
+	}
+	
+	public String getBday() {
+		return myBirthday;
 	}
 }
 

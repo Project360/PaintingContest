@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 
+import model.Contestant;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,16 +16,21 @@ import java.util.Random;
 
 @SuppressWarnings("serial")
 public class Registration extends JFrame implements ActionListener {
-    String firstName,lasName,phoneNumber,ageGroup,emailAddress;
+	private Contestant theContestant;
+    //String firstName,lasName,phoneNumber,ageGroup,emailAddress;
     JLabel label1, label2, label3, label4, label5, label6;
     JTextField firstN, lastN, phoneN, age, emailadd;
     JButton regbtn, clearbtn;
+    
+    private final String DEL = ",";
 
-
-    Registration() {
+    public Registration() {
         //JFrame frame;
-        
-        getContentPane().setBackground(new Color(102, 205, 170));
+        initialize();
+    }
+    
+    public void initialize() {
+    	getContentPane().setBackground(new Color(102, 205, 170));
         setLayout(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Painting  Contest Registration Form ");
@@ -82,7 +89,83 @@ public class Registration extends JFrame implements ActionListener {
         setSize(550, 450);
     }
 
-    public boolean validateForm() {
+    protected boolean validateForm() {
+    	if (fieldsAreEmpty()) {
+    		try {
+                JOptionPane.showMessageDialog(regbtn, "Entry Fields can not be blank");
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+    		return false;
+    	} 
+    	if (!validAge(age.getText().trim())) {
+    		try {
+                JOptionPane.showMessageDialog(regbtn, "Age must be between 2 and 100.");
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+    		return false;
+    	} 
+    	if (!validEmail(emailadd.getText().trim())) {
+    		try {
+                JOptionPane.showMessageDialog(regbtn, "The email address is invalid.");
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+    		return false;
+    	} 
+    	if (!validPhone(phoneN.getText().trim())) {
+    		try {
+                JOptionPane.showMessageDialog(regbtn, "The phone number is invalid.");
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+    	}
+    	return true;
+    }
+    
+    public boolean validEmail(String email) {
+    	return (email.contains("@") && (email.endsWith(".com") || email.endsWith(".edu") ||
+    			email.endsWith(".net")));
+    }
+    
+    /**
+     * Validates the given phone number based on the following.
+     * 		1234567890
+	* 		123-456-7890
+	* 		123-456-7890 x1234
+	* 		123-456-7890 ext1234
+	* 		(123)-456-7890
+	* 		123.456.7890
+	* 		123 456 7890
+	* Used code from journaldev.com
+	* @param phone the phone number
+     * @return true if the string matches the above.
+     */
+    public boolean validPhone(String phone) {
+    	//validate phone numbers of format "1234567890"
+        if (phone.matches("\\d{10}")) 
+        	return true;
+        //validating phone number with -, . or spaces
+        else if(phone.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) 
+        	return true;
+        //validating phone number with extension length from 3 to 5
+        else if(phone.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) 
+        	return true;
+        //validating phone number where area code is in braces ()
+        else if(phone.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) 
+        	return true;
+        //return false if nothing matches the input
+        else 
+        	return false;
+    }
+    
+    public boolean validAge(String age) {
+    	int ageNo = Integer.parseInt(age);
+    	return (ageNo > 2 || ageNo < 100);
+    }
+    
+    public boolean fieldsAreEmpty() {
     	return (firstN.getText().equals("") || lastN.getText().equals("") ||
                 age.getText().equals("") || emailadd.getText().equals("") ||
                 phoneN.getText().equals(""));
@@ -91,13 +174,10 @@ public class Registration extends JFrame implements ActionListener {
 
         if (e.getSource() == regbtn) {
         	if (validateForm()) {
-        		try {
-                    JOptionPane.showMessageDialog(regbtn, "Entry Fields can not be blank");
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-        	} else {
-        		registerUser();
+        		
+        		theContestant = new Contestant(firstN.getText(), lastN.getText(), phoneN.getText(), 
+        				age.getText(), emailadd.getText());
+        		registerUser(theContestant);
         		new Login();
                 dispose();
         	}
@@ -105,9 +185,8 @@ public class Registration extends JFrame implements ActionListener {
             cancel(); 
         }
     }
-        
-    
-	protected void registerUser() {
+
+	public void registerUser(Contestant user) {
     	// create a new Contestant
     	PrintWriter outputStream = null;
 		try {
@@ -115,14 +194,13 @@ public class Registration extends JFrame implements ActionListener {
 			Random r = new Random( System.currentTimeMillis() );
 			int random = (1 + r.nextInt(2)) * 10000 + r.nextInt(10000);
 			String strI = Integer.toString(random);
-			firstName = firstN.getText();
-			lasName =  lastN.getText();
-			phoneNumber = phoneN.getText();
-			ageGroup = age.getText();
-			emailAddress = emailadd.getText();
-			outputStream.println(strI+"|"+firstName+","+lasName+","+phoneNumber+","+ageGroup+","+emailAddress);
+			
+			outputStream.println(strI+"|" + user.getFirst() + DEL + user.getLast() + DEL +
+					user.getPhone() + DEL + user.getAgeGroup() + DEL + user.getEmail());
+			//outputStream.println(strI+"|"+firstName+","+lasName+","+phoneNumber+","+ageGroup+","+emailAddress);
 	        JOptionPane.showMessageDialog(regbtn, " Congradulation!!" + 
-	        		" \n You are Successfully Registered" + "\n Your Registration # is  "+strI + " and " + "\n User Name is " +firstName);
+	        		" \n You are Successfully Registered" + "\n Your Registration # is  "+strI + " and " 
+	        		+ "\n User Name is " + user.getFirst());
 	        outputStream.close();
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
