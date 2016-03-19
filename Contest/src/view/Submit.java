@@ -23,11 +23,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 
-/**
- * This class represents the Submit an entry GUI.
- * @author Vinh Tran
- *
- */
+
 public class Submit extends JFrame implements ActionListener{
 	String filelist = "nothing";
 	private JFrame frame;

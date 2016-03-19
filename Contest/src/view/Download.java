@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * 
- * @author Minyahil Kebebbegn, Vinh Tran
+ * @author Gring Mustafa, Minyahil Kebebbegn, Vinh Tran
  *
  */
   @SuppressWarnings("serial")
@@ -25,19 +25,13 @@ public class Download extends JFrame implements ActionListener{
       private JButton btnCompanyC;
       private JButton btnCompanyD;
       private JLabel lblChoosePaintingTo;
-     
-  	
+       	
   
    /**
     * Constructor for objects of class Calculate
-    */
-      
-     
+    */     
      Download(){
-        Container contentPane;
-     
-     
-     
+        Container contentPane;    
        //Set the frame properties
         setSize         (900, 740);
         setResizable    (false);
@@ -57,17 +51,15 @@ public class Download extends JFrame implements ActionListener{
         contentPane.add(CompanyA);
         CompanyA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 //img = new ImageIcon(getClass().getResource(Ant.png));
-				
-				
+				 //img = new ImageIcon(getClass().getResource(Ant.png));								
 				try {
-					String path = "C:/workspace/contest/images/Lists/list 1/";
+					String path = "C:/Users/Phu/git/NewPaintingContest/Contest/src/Image/Lists/list 1/";
 				    JFrame frame=new JFrame();
 				    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 				    File folder = new File(path);
 				    File[] listOfFiles = folder.listFiles();
-				    DefaultListModel listModel = new DefaultListModel();
+				    DefaultListModel<ImageIcon> listModel = new DefaultListModel<ImageIcon>();
 				    int count = 0;
 				    for (int i = 0; i < listOfFiles.length; i++)
 				    {
@@ -79,7 +71,7 @@ public class Download extends JFrame implements ActionListener{
 				            listModel.add(count++, ii);
 				        }
 				    }
-				    JList lsm=new JList(listModel);
+				    JList<ImageIcon> lsm=new JList<ImageIcon>(listModel);
 				    lsm.setVisibleRowCount(3);
 
 				    frame.add(new JScrollPane(lsm));
@@ -88,28 +80,20 @@ public class Download extends JFrame implements ActionListener{
 				    frame.setVisible(true);
 				} catch (IOException e1) {
 					e1.printStackTrace();
-				}
-			
-			
+				}						
 			}
 		});
-        
-     	
+             	
         load = new JButton("Download");
         load.setBounds(314, 613, 158, 67);
         contentPane.add(load);
         load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 //img = new ImageIcon(getClass().getResource(Ant.png));
-				
-				
-				String title = "Frame Test";
-				
+				 //img = new ImageIcon(getClass().getResource(Ant.png));								
+				String title = "Frame Test";				
 				ImageCopy f = new ImageCopy(title);
 				f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				f.setVisible(true);
-			
-			
+				f.setVisible(true);						
 			}
 		});
      	
@@ -120,16 +104,15 @@ public class Download extends JFrame implements ActionListener{
         btnCompanyB = new JButton("List 2");
         btnCompanyB.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
-        		
+        		        		
 				try {
-					String path = "C:/workspace/contest/images/Lists/list 2/";
+					String path = "C:/Users/Phu/git/NewPaintingContest/Contest/src/Image/Lists/list 2/";
 				    JFrame frame=new JFrame();
 				    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 				    File folder = new File(path);
 				    File[] listOfFiles = folder.listFiles();
-				    DefaultListModel listModel = new DefaultListModel();
+				    DefaultListModel<ImageIcon> listModel = new DefaultListModel<ImageIcon>();
 				    int count = 0;
 				    for (int i = 0; i < listOfFiles.length; i++)
 				    {
@@ -141,7 +124,7 @@ public class Download extends JFrame implements ActionListener{
 				            listModel.add(count++, ii);
 				        }
 				    }
-				    JList lsm=new JList(listModel);
+				    JList<ImageIcon> lsm=new JList<ImageIcon>(listModel);
 				    lsm.setVisibleRowCount(3);
 
 				    frame.add(new JScrollPane(lsm));
@@ -156,22 +139,20 @@ public class Download extends JFrame implements ActionListener{
         });
         btnCompanyB.setBounds(6, 231, 171, 113);
         getContentPane().add(btnCompanyB);
-        
-        
-        
+                
         btnCompanyC = new JButton("List 3");
         btnCompanyC.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
         		
 				try {
-					String path = "C:/workspace/contest/images/Lists/list 3/";
+					String path = "C:/Users/Phu/git/NewPaintingContest/Contest/src/Image/Lists/list 3/";
 				    JFrame frame=new JFrame();
 				    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 				    File folder = new File(path);
 				    File[] listOfFiles = folder.listFiles();
-				    DefaultListModel listModel = new DefaultListModel();
+				    DefaultListModel<ImageIcon> listModel = new DefaultListModel<ImageIcon>();
 				    int count = 0;
 				    for (int i = 0; i < listOfFiles.length; i++)
 				    {
@@ -183,7 +164,7 @@ public class Download extends JFrame implements ActionListener{
 				            listModel.add(count++, ii);
 				        }
 				    }
-				    JList lsm=new JList(listModel);
+				    JList<ImageIcon> lsm=new JList<ImageIcon>(listModel);
 				    lsm.setVisibleRowCount(3);
 
 				    frame.add(new JScrollPane(lsm));
@@ -204,13 +185,13 @@ public class Download extends JFrame implements ActionListener{
         		
         		
 				try {
-					String path = "C:/workspace/contest/images/Lists/list 4/";
+					String path = "C:/Users/Phu/git/NewPaintingContest/Contest/src/Image/Lists/list 4/";
 				    JFrame frame=new JFrame();
 				    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 				    File folder = new File(path);
 				    File[] listOfFiles = folder.listFiles();
-				    DefaultListModel listModel = new DefaultListModel();
+				    DefaultListModel<ImageIcon> listModel = new DefaultListModel<ImageIcon>();
 				    int count = 0;
 				    for (int i = 0; i < listOfFiles.length; i++)
 				    {
@@ -222,7 +203,7 @@ public class Download extends JFrame implements ActionListener{
 				            listModel.add(count++, ii);
 				        }
 				    }
-				    JList lsm=new JList(listModel);
+				    JList<ImageIcon> lsm=new JList<ImageIcon>(listModel);
 				    lsm.setVisibleRowCount(3);
 
 				    frame.add(new JScrollPane(lsm));
@@ -255,7 +236,7 @@ public class Download extends JFrame implements ActionListener{
  
        //Exit program when the viewer is closed
         
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
      }
   
    //Event handler
@@ -292,6 +273,7 @@ public class Download extends JFrame implements ActionListener{
     	        super(title);
     	        Container content_pane = getContentPane();
     	        content_pane.setLayout(new BorderLayout());
+    	        content_pane.setBackground( new Color(102, 205, 170 ));
 
     	        JMenu m = new JMenu("File");
     	        m.add(fMenuOpen = makeMenuItem("Open"));
@@ -337,7 +319,7 @@ public class Download extends JFrame implements ActionListener{
     	        JFileChooser fc = new JFileChooser();
     	        fc.setDialogTitle("Open File");
     	        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-    	        fc.setCurrentDirectory(new File("C:/Users/gring/workspace/contest/images/Lists"));
+    	        fc.setCurrentDirectory(new File("C:/Users/Phu/git/NewPaintingContest/Contest/src/Image/Lists"));
     	        fc.setFileFilter(fJavaFilter);
     	        int result = fc.showOpenDialog(this);
     	        if (result == JFileChooser.CANCEL_OPTION) {

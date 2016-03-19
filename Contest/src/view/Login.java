@@ -11,12 +11,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-/**
- * This class represents the login feature of the GUI
- * @author 
- * @author Sara Vandandaigue - refactoring
- * @version 1.0
- */
 @SuppressWarnings("serial")
 public class Login extends JFrame implements ActionListener 
 { 
@@ -103,12 +97,13 @@ public class Login extends JFrame implements ActionListener
 				}
 			} else {
 				String pass= p1.getText();
+				register = pass;
 				String regn = UserN.getText();
 				if (!LoginUser(pass, regn)) {
 					JOptionPane.showMessageDialog(Loginbtn, 
 							" Wrong Registration Number!!" + " \n Please Try Again");
 				} else {
-					new HomeScreen();
+					//new HomeScreen();
 				}
 			}
 		} else {	// cancel button
@@ -142,14 +137,15 @@ public class Login extends JFrame implements ActionListener
 			//String line2 = UserN.nextLine();
 			String[] theLine=line.split("\\|");
 			//System.out.println("Account:" + theLine[0] + " name:" + theLine[1]);
-			//String[] userInfo = theLine[1].split(",");
+			String[] userInfo = theLine[1].split(",");
 			if(theLine[0].trim().equalsIgnoreCase(pass.trim()) && 
-					theLine[1].trim().equalsIgnoreCase(regn.trim()))
+					userInfo[0].trim().equalsIgnoreCase(regn.trim()))
 			{
 				foundUser = true;
 			}
 			if (foundUser) {
 				JOptionPane.showMessageDialog(Loginbtn, " Congradulation!!" + " \n You are Successfully Login");
+				exampleBool = true;
 				dispose();
 				return true;
 			}

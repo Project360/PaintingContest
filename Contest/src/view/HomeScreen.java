@@ -1,6 +1,7 @@
 package view;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -37,6 +38,8 @@ public class HomeScreen extends JFrame{
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.RED);
 		frame.setBounds(100, 100, 679, 439);
+		frame.getContentPane().setBackground( new Color(102, 205, 170 ));
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -63,7 +66,7 @@ public class HomeScreen extends JFrame{
 			}
 		});
 		btnLogin.setBounds(91, 273, 141, 64);
-		//frame.getContentPane().add(btnNewButton_1);
+		frame.getContentPane().add(btnLogin);
 		
 		JButton btnDownload = new JButton("DOWNLOAD");//login
 		btnDownload.addActionListener(new ActionListener() {
@@ -74,14 +77,22 @@ public class HomeScreen extends JFrame{
 		btnDownload.setBounds(421, 120, 141, 64);
 		frame.getContentPane().add(btnDownload);
 		
-		JButton btnJudge = new JButton("JUDGE SCREEN");
-		btnJudge.addActionListener(new ActionListener() {
+		JButton btnSubmit = new JButton("SUBMIT");
+		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			}
+				if(Login.ReturnExampleBool())
+				{
+					new Submit();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(btnSubmit,"Please Login");
+				}				 
+			
+				}
 		});
-		btnJudge.setBounds(421, 273, 141, 64);
-		frame.getContentPane().add(btnJudge);
+		btnSubmit.setBounds(421, 273, 141, 64);
+		frame.getContentPane().add(btnSubmit);
 		
 		JButton btnEntry = new JButton("ENTRY");
 		btnEntry.addActionListener(new ActionListener() {
